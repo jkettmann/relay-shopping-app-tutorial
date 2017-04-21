@@ -43,5 +43,10 @@ module.exports = {
       template: './app/index.html',
     }),
     new ExtractTextPlugin('[name].css'),
+    new webpack.DefinePlugin({
+      'process.env': {
+        GRAPHQL_URL: JSON.stringify(process.env.GRAPHQL_ENDPOINT),
+      },
+    }),
   ],
 }

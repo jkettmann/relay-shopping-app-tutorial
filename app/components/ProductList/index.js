@@ -1,8 +1,21 @@
 import React from 'react'
 
+import ListItem from './ListItem'
+import ProductTeaser from './ProductTeaser'
+
+import styles from './styles.css'
+
+import products from './products.json'
+
 const ProductList = () => (
-  <div>
-    Product list comes here
+  <div className={styles.wrapper}>
+    {
+      products.map(product => (
+        <ListItem key={product.id}>
+          <ProductTeaser {...product} />
+        </ListItem>
+      ))
+    }
   </div>
 )
 

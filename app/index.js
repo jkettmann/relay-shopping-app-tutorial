@@ -6,10 +6,14 @@ import {
   Route,
   IndexRoute,
   browserHistory,
+  applyRouterMiddleware,
 } from 'react-router'
+import useRelay from 'react-router-relay'
 
 import App from './components/App'
 import ProductList from './components/ProductList'
+
+import ViewerQueries from './queries/ViewerQueries'
 
 import './index.css'
 
@@ -19,6 +23,9 @@ Relay.injectNetworkLayer(
 
 ReactDOM.render(
   <Router
+    forceFetch
+    environment={Relay.Store}
+    render={applyRouterMiddleware(useRelay)}
     history={browserHistory}
   >
     <Route
@@ -27,6 +34,7 @@ ReactDOM.render(
     >
       <IndexRoute
         component={ProductList}
+        queries={ViewerQueries}
       />
     </Route>
   </Router>,

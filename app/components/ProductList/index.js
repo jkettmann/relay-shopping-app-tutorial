@@ -12,7 +12,7 @@ const ProductList = ({ viewer }) => (
     {
       viewer.allProducts.edges.map(product => (
         <ListItem key={product.node.id}>
-          <ProductTeaser {...product.node} />
+          <ProductTeaser product={product.node} />
         </ListItem>
       ))
     }
@@ -40,9 +40,7 @@ export default Relay.createContainer(ProductList, {
           edges {
             node {
               id
-              name
-              imageUrl
-              price
+              ${ProductTeaser.getFragment('product')}
             }
           }
         }

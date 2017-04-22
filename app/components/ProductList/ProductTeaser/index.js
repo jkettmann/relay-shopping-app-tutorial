@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Relay from 'react-relay'
 
 import ShoppingCartIcon from '../../../icons/shopping-cart.svg'
 
 import styles from './styles.css'
 
-const ProductTeaser = ({ imageUrl, name, price }) => (
+const ProductTeaser = ({ product: { imageUrl, name, price } }) => (
   <div className={styles.wrapper} >
     <img
       className={styles.image}
@@ -30,9 +31,21 @@ const ProductTeaser = ({ imageUrl, name, price }) => (
 )
 
 ProductTeaser.propTypes = {
-  name: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
 }
 
-export default ProductTeaser
+export default Relay.createContainer(ProductTeaser, {
+  fragments: {
+    product: () => Relay.QL`
+      fragment on Product {
+        name
+        imageUrl
+        price
+      }
+    `,
+  },
+})

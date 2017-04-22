@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Relay from 'react-relay'
 import {
   Router,
   Route,
@@ -12,8 +13,14 @@ import ProductList from './components/ProductList'
 
 import './index.css'
 
+Relay.injectNetworkLayer(
+  new Relay.DefaultNetworkLayer(process.env.GRAPHQL_URL),
+)
+
 ReactDOM.render(
-  <Router history={browserHistory} >
+  <Router
+    history={browserHistory}
+  >
     <Route
       path="/"
       component={App}

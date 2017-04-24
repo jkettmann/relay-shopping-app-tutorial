@@ -7,7 +7,13 @@ import ProductTeaser from './ProductTeaser'
 
 import styles from './styles.css'
 
-const ProductList = ({ viewer }) => (
+const PRODUCTS_PER_PAGE = 3
+
+function increaseProductLimit({ variables, setVariables }) {
+  setVariables({ limit: variables.limit + PRODUCTS_PER_PAGE })
+}
+
+const ProductList = ({ viewer, relay }) => (
   <div className={styles.wrapper}>
     {
       viewer.allProducts.edges.map(product => (
@@ -16,6 +22,15 @@ const ProductList = ({ viewer }) => (
         </ListItem>
       ))
     }
+
+    <div className={styles.footer}>
+      <button
+        className={styles.moreButton}
+        onClick={() => increaseProductLimit(relay)}
+      >
+        More
+      </button>
+    </div>
   </div>
 )
 
@@ -27,11 +42,17 @@ ProductList.propTypes = {
       })).isRequired,
     }).isRequired,
   }).isRequired,
+  relay: PropTypes.shape({
+    variables: PropTypes.shape({
+      limit: PropTypes.number.isRequired,
+    }).isRequired,
+    setVariables: PropTypes.func.isRequired,
+  }).isRequired,
 }
 
 export default Relay.createContainer(ProductList, {
   initialVariables: {
-    limit: 10,
+    limit: PRODUCTS_PER_PAGE,
   },
   fragments: {
     viewer: () => Relay.QL`

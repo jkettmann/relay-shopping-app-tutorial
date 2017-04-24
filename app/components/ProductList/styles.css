@@ -2,3 +2,20 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.footer {
+  width: 100%;
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.moreButton {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #555;
+  background-color: white;
+  cursor: pointer;
+}

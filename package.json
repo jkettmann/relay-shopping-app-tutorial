@@ -37,6 +37,6 @@
     "react-router-relay": "^0.13.7"
   },
   "scripts": {
-    "start": "GRAPHQL_ENDPOINT=${GRAPHQL_ENDPOINT:=https://api.graph.cool/relay/v1/cj1f74iydb6nv0109o9a9pdss} webpack-dev-server -d --hot --inline --no-info --port 3000"
+    "start": "GRAPHQL_ENDPOINT=${GRAPHQL_ENDPOINT:=https://us-west-2.api.scaphold.io/graphql/relay-shopping-app-tutorial} webpack-dev-server -d --hot --inline --no-info --port 3000"
   }
 }

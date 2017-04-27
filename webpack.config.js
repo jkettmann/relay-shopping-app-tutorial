@@ -9,6 +9,9 @@ module.exports = {
     path: __dirname + '/build',
     publicPath: '/',
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     loaders: [
       {

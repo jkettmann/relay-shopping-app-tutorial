@@ -12,8 +12,10 @@ import useRelay from 'react-router-relay'
 
 import App from './components/App'
 import ProductList from './components/ProductList'
+import ProductDetail from './components/ProductDetail'
 
 import ViewerQueries from './queries/ViewerQueries'
+import ProductQueries from './queries/ProductQueries'
 
 import './index.css'
 
@@ -35,6 +37,12 @@ ReactDOM.render(
       <IndexRoute
         component={ProductList}
         queries={ViewerQueries}
+      />
+
+      <Route
+        path="/product/:productId"
+        component={ProductDetail}
+        queries={ProductQueries}
       />
     </Route>
   </Router>,

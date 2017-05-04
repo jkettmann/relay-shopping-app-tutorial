@@ -1,12 +1,15 @@
-const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import webpack from 'webpack'
+import path from 'path'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 module.exports = {
-  entry: './app/index.js',
+  entry: {
+    app: './app/index.js',
+  },
   output: {
-    filename: 'app.js',
-    path: __dirname + '/build',
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'build'),
     publicPath: '/',
   },
   module: {
@@ -15,7 +18,7 @@ module.exports = {
         test: /\.css/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+          use: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
         }),
         exclude: /node_modules/,
       },

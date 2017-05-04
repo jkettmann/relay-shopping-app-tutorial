@@ -4,9 +4,11 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 module.exports = {
-  entry: './app/index.js',
+  entry: {
+    app: './app/index.js',
+  },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'build'),
     publicPath: '/',
   },
